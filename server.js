@@ -25,8 +25,16 @@ counter++;
   res.writeHead(200, {'Content-Type': 'text/html'});res.end('Witaj na stronie.odwiedziles ja juz '+counter.toString()+ ' razy');}
   else if(path === "/add"){
     res.writeHead(200, {'Content-Type': 'text/html'});
-    
-fs.appendFile("guests.txt", "Jan" + "\n", (err) => {
+  const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1; // Months are zero-indexed
+const day = currentDate.getDate();
+const now = new Date();
+const hours = now.getHours();
+const minutes = now.getMinutes();
+const seconds = now.getSeconds();
+
+fs.appendFile("guests.txt", "Jan "+ hours+ ":" + minutes + " "+ day +"."+ month +"."+ year  + "\n", (err) => {
     if (err) {
         console.log(err);
     }
